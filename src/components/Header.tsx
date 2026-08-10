@@ -79,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCtaModal }) => {
           {/* Right Action CTA */}
           <div className="hidden sm:flex items-center gap-4">
             <a
-              href={`https://wa.me/5567998190294?text=${encodeURIComponent('Olá, venho através da página e gostaria de saber mais sobre o método 7|21?')}`}
+              href={`https://wa.me/5567998190294?text=${encodeURIComponent('Olá, venho através da página e gostaria de saber mais sobre o método 21 em 7?')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-700 hover:text-emerald-600 text-xs font-bold flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-slate-100 transition"

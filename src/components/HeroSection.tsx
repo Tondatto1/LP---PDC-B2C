@@ -58,7 +58,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCtaModal }) => {
           <div className="lg:col-span-5 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
             {/* Headline */}
             <h1 className="text-2xl sm:text-4xl lg:text-[57px] font-black tracking-tight text-slate-900 leading-tight lg:leading-[67.2px] uppercase">
-              Seu time comercial vendendo até <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent italic">5x mais</span> com nosso <span className="underline decoration-emerald-600 decoration-3 lg:decoration-4 underline-offset-4">método 7|21</span>
+              Seu time comercial vendendo até <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent italic">5x mais</span> com nosso <span className="underline decoration-emerald-600 decoration-3 lg:decoration-4 underline-offset-4">método 21 em 7</span>
             </h1>
 
             {/* Subheadline */}

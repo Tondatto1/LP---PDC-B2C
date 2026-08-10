@@ -22,7 +22,7 @@ export const PlanBuilderSection: React.FC<PlanBuilderSectionProps> = ({ onOpenCt
     {
       id: 'quinzenal',
       icon: Video,
-      title: 'Treinamento online quinzenal pelo Método 7|21',
+      title: 'Treinamento online quinzenal pelo Método 21 em 7',
       description: 'Carga horária total de 12 horas focadas na aplicação prática e evolução contínua da equipe.',
       highlight: '12h de Treinamento',
     },
