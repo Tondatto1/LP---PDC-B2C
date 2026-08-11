@@ -39,15 +39,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCtaModal }) => {
     <header 
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled 
-          ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-md py-2.5' 
-          : 'bg-gradient-to-b from-white/95 via-white/80 to-transparent py-3 sm:py-4'
+          ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-md py-2' 
+          : 'bg-gradient-to-b from-white/95 via-white/80 to-transparent py-2 sm:py-3.5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-2 sm:gap-4">
+      <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-1.5 sm:gap-4">
           
-          {/* Logo */}
-          <a href="#" className="flex items-center group py-1 shrink-0">
+          {/* Logo (Hidden on mobile < sm, visible on sm and up) */}
+          <a href="#" className="hidden sm:flex items-center group py-1 shrink-0">
             <img 
               src="/imagens/logo_letra_preta_trans_hor.png" 
               alt="AGRO MÉTODO PCP Logo" 
@@ -63,20 +63,31 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCtaModal }) => {
             />
           </a>
 
-          {/* Center Announcement Bar */}
-          <div className="hidden lg:flex items-center justify-center flex-1 max-w-2xl mx-4">
-            <div className="inline-flex items-center justify-center gap-3 px-6 py-2.5 rounded-full bg-slate-900/95 text-white border border-slate-800 shadow-md text-sm xl:text-base font-extrabold tracking-tight w-full">
+          {/* Announcement Bar (Desktop lg:flex, Mobile sm:hidden stacked) */}
+          <div className="flex lg:flex items-center justify-center flex-1 min-w-0 lg:max-w-2xl lg:mx-4">
+            {/* Mobile Stacked Banner (< sm) */}
+            <div className="flex lg:hidden flex-col items-center justify-center px-3 py-1.5 rounded-xl bg-slate-900/95 text-white border border-slate-800 shadow-md w-full">
+              <span className="text-emerald-400 font-black text-[10px] min-[380px]:text-[11px] tracking-tight uppercase leading-snug text-center">
+                65% DAS INSCRIÇÕES REALIZADAS
+              </span>
+              <span className="text-amber-300 font-black text-[9.5px] min-[380px]:text-[10.5px] tracking-tight uppercase leading-snug text-center">
+                ÚLTIMOS DIAS COM 45% OFF
+              </span>
+            </div>
+
+            {/* Desktop Horizontal Banner (>= lg) */}
+            <div className="hidden lg:inline-flex items-center justify-center gap-3 px-6 py-2.5 rounded-full bg-slate-900/95 text-white border border-slate-800 shadow-md text-sm xl:text-base font-extrabold tracking-tight w-full">
               <span className="relative flex h-3 w-3 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
               </span>
               <span className="text-emerald-400 font-black tracking-wide uppercase">65% DAS INSCRIÇÕES REALIZADAS</span>
-              <span className="text-slate-600 font-light">|</span>
+              <span className="text-slate-600 font-light shrink-0">|</span>
               <span className="text-amber-300 font-black uppercase">ÚLTIMOS DIAS COM 45% OFF</span>
             </div>
           </div>
 
-          {/* Right Action CTA */}
+          {/* Right Action CTA (Desktop >= sm) */}
           <div className="hidden sm:flex items-center gap-3 xl:gap-4 shrink-0">
             <button
               onClick={onOpenCtaModal}
@@ -87,24 +98,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCtaModal }) => {
             </button>
           </div>
 
-          {/* Mobile Actions */}
-          <div className="flex sm:hidden items-center gap-2">
+          {/* Mobile Action CTA (< sm) */}
+          <div className="flex sm:hidden items-center shrink-0">
             <button
               onClick={onOpenCtaModal}
-              className="px-3 py-1.5 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-[11px] uppercase rounded-lg border border-emerald-300/60 ring-1 ring-emerald-500/20 shadow-sm"
+              className="px-2.5 py-1.5 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-white font-black text-[10px] min-[360px]:text-[10.5px] uppercase rounded-lg border border-emerald-300/60 ring-1 ring-emerald-500/20 shadow-sm whitespace-nowrap"
             >
               REALIZAR INSCRIÇÃO!
             </button>
           </div>
-        </div>
 
-        {/* Mobile Banner underneath header on smaller screens */}
-        <div className="mt-2 block lg:hidden text-center">
-          <div className="inline-flex flex-wrap items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/95 text-white text-[11px] font-extrabold w-full sm:w-auto shadow-sm">
-            <span className="text-emerald-400 font-black">65% DAS INSCRIÇÕES REALIZADAS</span>
-            <span className="text-slate-500">|</span>
-            <span className="text-amber-300 font-black">ÚLTIMOS DIAS COM 45% OFF</span>
-          </div>
         </div>
       </div>
     </header>
