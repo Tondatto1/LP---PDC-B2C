@@ -117,18 +117,33 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCtaModal }) => {
 
             {/* 3° Subheadline Badges (order-3 on mobile, lg:order-2 on desktop) */}
             <div className="order-3 lg:order-2 flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-2.5 pt-1 w-full">
-              <div className="inline-flex items-center gap-2 px-4 py-2 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-100 via-teal-100 to-blue-100 border border-emerald-300/80 text-emerald-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-xs uppercase tracking-wide">
-                <span className="w-3 h-3 rounded-full bg-emerald-600 animate-pulse shrink-0"></span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-100/90 via-teal-50 to-blue-50 border border-emerald-200 text-emerald-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-2xs uppercase tracking-wide">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0"></span>
                 <span>19° TURMA</span>
               </div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-100 via-teal-100 to-blue-100 border border-emerald-300/80 text-emerald-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-xs uppercase tracking-wide">
-                <span className="w-3 h-3 rounded-full bg-teal-600 shrink-0"></span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-100/90 via-teal-50 to-blue-50 border border-emerald-200 text-emerald-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-2xs uppercase tracking-wide">
+                <span className="w-2.5 h-2.5 rounded-full bg-teal-600 shrink-0"></span>
                 <span>SOMENTE 40 ALUNOS</span>
               </div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-100 via-teal-100 to-blue-100 border border-emerald-300/80 text-emerald-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-xs uppercase tracking-wide">
-                <span className="w-3 h-3 rounded-full bg-blue-600 shrink-0"></span>
-                <span>INÍCIO NO DIA 10 DE SETEMBRO</span>
-              </div>
+              
+              {/* Highlighted 3rd Badge with Pulsing Ring, Ping and Standout Accent */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.035, 1],
+                }}
+                transition={{
+                  duration: 2.2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="relative inline-flex items-center gap-2 px-4 py-2 sm:px-4.5 sm:py-2 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 text-slate-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-lg shadow-amber-500/30 border-2 border-amber-500 ring-2 ring-amber-400/60 uppercase tracking-wide"
+              >
+                <span className="relative flex h-3 w-3 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-80"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
+                </span>
+                <span className="font-black text-slate-950 tracking-tight">3° LOTE ENCERRA 04/09</span>
+              </motion.div>
             </div>
 
             {/* 4° Botão (order-4 on mobile, lg:order-3 on desktop) */}
