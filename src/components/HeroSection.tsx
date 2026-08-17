@@ -58,8 +58,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCtaModal }) => {
           {/* Left Column: Text & CTA */}
           <div className="lg:col-span-5 space-y-3.5 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
             
-            {/* 1° Imagem (Mobile Only: order-1, Hidden on desktop lg) */}
-            <div className="order-1 lg:hidden w-full max-w-xl mx-auto -mt-1 mb-2 [perspective:1000px]">
+            {/* 1° Headline (order-1 on mobile & desktop) */}
+            <h1 className="order-1 text-[27px] min-[380px]:text-[30px] min-[420px]:text-3xl sm:text-4xl lg:text-[57px] font-black tracking-tight text-slate-900 leading-[1.18] sm:leading-tight lg:leading-[67.2px] uppercase">
+              Seu time comercial vendendo até <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent italic">5x mais</span> com nosso <span className="underline decoration-emerald-600 decoration-3 lg:decoration-4 underline-offset-4">método 21 em 7</span>
+            </h1>
+
+            {/* 2° Imagem (Mobile Only: order-2, positioned between Headline & Subheadline, Hidden on desktop lg) */}
+            <div className="order-2 lg:hidden w-full max-w-xl mx-auto my-1.5 [perspective:1000px]">
               <motion.div 
                 className="relative mx-auto w-full group"
                 initial={{ rotateY: -4, rotateX: 6, scale: 0.98 }}
@@ -109,11 +114,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCtaModal }) => {
                 </div>
               </motion.div>
             </div>
-
-            {/* 2° Headline (order-2 on mobile, lg:order-1 on desktop) */}
-            <h1 className="order-2 lg:order-1 text-[27px] min-[380px]:text-[30px] min-[420px]:text-3xl sm:text-4xl lg:text-[57px] font-black tracking-tight text-slate-900 leading-[1.18] sm:leading-tight lg:leading-[67.2px] uppercase">
-              Seu time comercial vendendo até <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent italic">5x mais</span> com nosso <span className="underline decoration-emerald-600 decoration-3 lg:decoration-4 underline-offset-4">método 21 em 7</span>
-            </h1>
 
             {/* 3° Subheadline Badges (order-3 on mobile, lg:order-2 on desktop) */}
             <div className="order-3 lg:order-2 flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-2.5 pt-1 w-full">
