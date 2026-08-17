@@ -263,32 +263,50 @@ export const METHOD_PCP_PILLARS = [
 export const FAQ_ITEMS: FaqItem[] = [
   {
     id: '1',
-    question: 'O treinamento é presencial ou online?',
-    answer: 'Ambos! Oferecemos modelos 100% presenciais (com imersão in-company), 100% online interativos (aulas ao vivo e plataforma EAD) e também formatos híbridos sob medida. Adaptamos a estrutura para atender perfeitamente à rotina e logística da sua equipe comercial no campo.',
-    category: 'formato'
+    question: 'O que é o Programa de Capacitação?',
+    answer: 'É um ecossistema completo de desenvolvimento comercial, criado para ajudar profissionais de vendas a aprender, aplicar e evoluir. O programa reúne Plataforma EAD, treinamentos presenciais e online, mentoria, CRM Agrovendedor e Ceruti IA, unindo conhecimento, prática e tecnologia para ajudar você a vender melhor e gerar mais resultados.',
+    category: 'geral'
   },
   {
     id: '2',
-    question: 'Quando começamos a ver os resultados no time?',
-    answer: 'Já na primeira semana! Normalmente, logo nos primeiros dias após o início do treinamento e implementação das técnicas do Método PCP, a equipe já apresenta evolução clara na abordagem técnica, argumentação de valor e conversão de vendas.',
-    category: 'resultados'
+    question: 'Para quem é o Programa de Capacitação?',
+    answer: 'O programa é para profissionais que trabalham com vendas e querem desenvolver suas habilidades comerciais, melhorar sua abordagem, negociação, relacionamento com clientes e resultados.',
+    category: 'publico'
   },
   {
     id: '3',
-    question: 'Vocês atendem todo o Brasil?',
-    answer: 'Sim! Atendemos empresas e equipes comerciais do agronegócio em todo o território nacional e América Latina, cobrindo todos os principais polos agrícolas com instrutores de ampla vivência de campo.',
-    category: 'abrangencia'
+    question: 'Preciso ter experiência em vendas para participar?',
+    answer: 'Não. O programa atende tanto quem está começando na área comercial quanto profissionais que já possuem experiência e querem evoluir.',
+    category: 'requisitos'
   },
   {
     id: '4',
-    question: 'Qual é a duração do programa de capacitação?',
-    answer: 'A duração do programa é de 90 dias (3 meses), estruturado para garantir acompanhamento contínuo e evolução da equipe comercial.',
-    category: 'duracao'
+    question: 'O que vou aprender no programa?',
+    answer: 'Você terá acesso a conteúdos práticos para desenvolver diferentes etapas da venda, desde a preparação e abordagem até negociação, fechamento, pós-venda e relacionamento com o cliente.',
+    category: 'conteudo'
+  },
+  {
+    id: '5',
+    question: 'O programa é voltado para qual segmento?',
+    answer: 'O programa foi desenvolvido com forte experiência no agronegócio, mas os conhecimentos comerciais podem ser aplicados por profissionais de diferentes segmentos.',
+    category: 'segmento'
   },
   {
     id: '6',
-    question: 'É possível personalizar o treinamento para a nossa linha de produtos e insumos?',
-    answer: 'Com certeza! Realizamos um diagnóstico prévio com a sua gestão para customizar cases reais, cenários de objeção do produtor e simulações focadas na sua linha de produtos ou soluções agrícolas.',
-    category: 'personalizacao'
+    question: 'Vou receber algum certificado?',
+    answer: 'Sim, conforme a modalidade e os treinamentos incluídos no programa, poderá haver certificação de participação ou conclusão.',
+    category: 'certificado'
+  },
+  {
+    id: '7',
+    question: 'Posso tirar dúvidas durante o programa?',
+    answer: 'Sim. Os participantes contam com canais de suporte para esclarecer dúvidas e aproveitar melhor os conteúdos disponíveis.',
+    category: 'suporte'
+  },
+  {
+    id: '8',
+    question: 'Como faço para participar?',
+    answer: 'Basta realizar sua inscrição pelo botão disponível nesta página. Após a confirmação, você receberá as orientações para acessar o programa.',
+    category: 'inscricao'
   }
 ];

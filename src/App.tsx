@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { TargetSection } from './components/TargetSection';
+import { HowItWorksSection } from './components/HowItWorksSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { TrustCompaniesSection } from './components/TrustCompaniesSection';
 import { AboutUsSection } from './components/AboutUsSection';
@@ -45,19 +46,22 @@ export default function App() {
         {/* 2ª SEÇÃO: Para Quem É o Programa? */}
         <TargetSection onOpenCtaModal={handleScrollToPlan} />
 
-        {/* 3ª SEÇÃO: O Que Dizem (Depoimentos) */}
+        {/* 3ª SEÇÃO: Como Funciona (Vídeo) */}
+        <HowItWorksSection onOpenCtaModal={handleScrollToPlan} />
+
+        {/* 4ª SEÇÃO: O Que Dizem (Depoimentos) */}
         <TestimonialsSection onOpenCtaModal={handleScrollToPlan} />
 
-        {/* 4ª SEÇÃO: Empresas que Confiam em Nós */}
+        {/* 5ª SEÇÃO: Empresas que Confiam em Nós */}
         <TrustCompaniesSection />
 
-        {/* 5ª SEÇÃO: Quem Somos? */}
+        {/* 6ª SEÇÃO: Quem Somos? */}
         <AboutUsSection onOpenCtaModal={handleScrollToPlan} />
 
-        {/* 6ª SEÇÃO: Personalize Seu Plano */}
+        {/* 7ª SEÇÃO: Personalize Seu Plano */}
         <PlanBuilderSection onOpenCtaModal={(planName) => handleOpenModal(planName)} />
 
-        {/* 7ª SEÇÃO: FAQ */}
+        {/* 8ª SEÇÃO: FAQ */}
         <FaqSection onOpenCtaModal={handleScrollToPlan} />
       </main>
 

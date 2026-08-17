@@ -115,7 +115,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, defaultPl
           </div>
 
           <h3 className="text-xl font-extrabold tracking-tight text-white leading-snug">
-            Preencha os dados abaixo para falar diretamente com nosso consultor.
+            Preencha os dados abaixo e nosso consultor entrará em contato com você.
           </h3>
         </div>
 

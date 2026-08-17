@@ -85,7 +85,7 @@ export const PlanBuilderSection: React.FC<PlanBuilderSectionProps> = ({ onOpenCt
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight uppercase">
-            ENTREGÁVEIS DO PROGRAMA
+            O QUE VOCÊ RECEBE
           </h2>
           
           {/* Highlighted Duration (Clean Typographic Highlight) */}

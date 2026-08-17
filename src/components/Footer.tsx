@@ -69,10 +69,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCtaModal }) => {
             </h4>
             <ul className="space-y-2 text-xs text-slate-600 font-medium">
               <li><a href="#para-quem-e" className="hover:text-emerald-600 transition">Para Quem É o Programa</a></li>
+              <li><a href="#como-funciona" className="hover:text-emerald-600 transition">Como Funciona (Vídeo)</a></li>
               <li><a href="#o-que-dizem" className="hover:text-emerald-600 transition">Depoimentos & Casos de Sucesso</a></li>
               <li><a href="#empresas" className="hover:text-emerald-600 transition">Empresas Que Confiam</a></li>
               <li><a href="#quem-somos" className="hover:text-emerald-600 transition">Quem Somos & Método PCP</a></li>
-              <li><a href="#planos" className="hover:text-emerald-600 transition">Entregáveis do Programa</a></li>
+              <li><a href="#planos" className="hover:text-emerald-600 transition">O Que Você Recebe</a></li>
               <li><a href="#faq" className="hover:text-emerald-600 transition">Perguntas Frequentes (FAQ)</a></li>
             </ul>
           </div>
