@@ -119,7 +119,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCtaModal }) => {
             <div className="order-3 lg:order-2 flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-2.5 pt-1 w-full">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-100/90 via-teal-50 to-blue-50 border border-emerald-200 text-emerald-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-2xs uppercase tracking-wide">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0"></span>
-                <span>19° TURMA</span>
+                <span>33° TURMA</span>
               </div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-100/90 via-teal-50 to-blue-50 border border-emerald-200 text-emerald-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-2xs uppercase tracking-wide">
                 <span className="w-2.5 h-2.5 rounded-full bg-teal-600 shrink-0"></span>
@@ -206,7 +206,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCtaModal }) => {
                   className="absolute -bottom-3 right-6 z-30 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-700/95 text-white text-[11px] font-extrabold tracking-wider uppercase border border-emerald-400/60 shadow-lg backdrop-blur-md"
                   style={{ transform: 'translateZ(25px)' }}
                 >
-                  <span>19ª TURMA CONFIRMADA</span>
+                  <span>33ª TURMA CONFIRMADA</span>
                 </div>
 
                 {/* Inner Screen Display */}
