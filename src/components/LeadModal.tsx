@@ -75,8 +75,8 @@ export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, defaultPl
     }
 
     // Construct WhatsApp URL
-    const message = `Olá, venho através da página e gostaria de saber mais sobre o método 21 em 7?`;
-    const waUrl = `https://wa.me/5567999034874?text=${encodeURIComponent(message)}`;
+    const message = `Olá. Gostaria de saber mais sobre a turma 33 do Campeão em Vendas?`;
+    const waUrl = `https://wa.me/5567981246558?text=${encodeURIComponent(message)}`;
 
     setTimeout(() => {
       setLoading(false);
@@ -135,7 +135,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, defaultPl
 
               <div className="pt-2 flex flex-col gap-2.5 justify-center">
                 <a
-                  href={`https://wa.me/5567999034874?text=${encodeURIComponent('Olá, venho através da página e gostaria de saber mais sobre o método 21 em 7?')}`}
+                  href={`https://wa.me/5567981246558?text=${encodeURIComponent('Olá. Gostaria de saber mais sobre a turma 33 do Campeão em Vendas?')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3.5 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black rounded-xl border border-emerald-300/60 ring-2 ring-emerald-500/20 text-sm transition shadow-lg flex items-center justify-center gap-2 uppercase tracking-wider"

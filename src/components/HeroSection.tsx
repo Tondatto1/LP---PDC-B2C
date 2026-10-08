@@ -53,18 +53,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCtaModal }) => {
 
       {/* Main Hero Content Area */}
       <div className="relative z-10 max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto pt-1 pb-4 sm:py-6 lg:py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 items-center">
           
           {/* Left Column: Text & CTA */}
-          <div className="lg:col-span-6 xl:col-span-7 space-y-4 sm:space-y-6 lg:space-y-7 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <div className="lg:col-span-5 space-y-3.5 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
             
             {/* 1° Headline (order-1 on mobile & desktop) */}
-            <h1 className="order-1 text-[30px] min-[360px]:text-[34px] min-[390px]:text-[38px] min-[430px]:text-[42px] sm:text-5xl lg:text-[60px] xl:text-[68px] font-black tracking-tight text-slate-900 leading-[1.08] sm:leading-[1.06] lg:leading-[1.08] uppercase break-words hyphens-none">
-              Venda até <span className="bg-gradient-to-r from-emerald-700 to-blue-700 bg-clip-text text-transparent italic">5x</span> mais com nosso <span className="bg-gradient-to-r from-emerald-700 to-blue-700 bg-clip-text text-transparent">Método 21 em 7</span>
+            <h1 className="order-1 text-[26px] min-[360px]:text-[28px] min-[390px]:text-[32px] sm:text-4xl lg:text-[54px] xl:text-[58px] font-black tracking-tight text-slate-900 leading-[1.14] sm:leading-tight lg:leading-[1.16] uppercase break-words hyphens-none">
+              Campeão em Vendas: Venda até <span className="bg-gradient-to-r from-emerald-700 to-blue-700 bg-clip-text text-transparent">5x mais!</span>
             </h1>
 
             {/* 2° Imagem (Mobile Only: order-2, positioned between Headline & Subheadline, Hidden on desktop lg) */}
-            <div className="order-2 lg:hidden w-full max-w-lg mx-auto my-2.5 [perspective:1000px]">
+            <div className="order-2 lg:hidden w-full max-w-lg mx-auto my-2 [perspective:1000px]">
               <motion.div 
                 className="relative mx-auto w-full group will-change-transform"
                 initial={{ scale: 0.98 }}
@@ -114,32 +114,32 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCtaModal }) => {
             </div>
 
             {/* 3° Subheadline Badges (order-3 on mobile, lg:order-2 on desktop) */}
-            <div className="order-3 lg:order-2 flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3.5 pt-1.5 w-full">
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-emerald-100/95 via-teal-50 to-blue-50 border border-emerald-300/80 text-emerald-950 font-black text-sm sm:text-base lg:text-lg shadow-xs uppercase tracking-wide">
-                <span className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-emerald-600 shrink-0 shadow-2xs"></span>
+            <div className="order-3 lg:order-2 flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-2.5 pt-1 w-full">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-100/90 via-teal-50 to-blue-50 border border-emerald-200 text-emerald-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-2xs uppercase tracking-wide">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0"></span>
                 <span>33° TURMA</span>
               </div>
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-emerald-100/95 via-teal-50 to-blue-50 border border-emerald-300/80 text-emerald-950 font-black text-sm sm:text-base lg:text-lg shadow-xs uppercase tracking-wide">
-                <span className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-teal-600 shrink-0 shadow-2xs"></span>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-100/90 via-teal-50 to-blue-50 border border-emerald-200 text-emerald-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-2xs uppercase tracking-wide">
+                <span className="w-2.5 h-2.5 rounded-full bg-teal-600 shrink-0"></span>
                 <span>SOMENTE 40 ALUNOS</span>
               </div>
             </div>
 
             {/* 4° Botão (order-4 on mobile, lg:order-3 on desktop) */}
-            <div className="order-4 lg:order-3 pt-2.5 sm:pt-3 w-full flex flex-col items-center lg:items-start justify-center lg:justify-start gap-4">
+            <div className="order-4 lg:order-3 pt-2 w-full flex flex-col items-center lg:items-start justify-center lg:justify-start gap-4">
               <button
                 onClick={onOpenCtaModal}
-                className="group relative inline-flex items-center justify-center gap-3.5 w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 min-h-[58px] sm:min-h-[66px] bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-lg sm:text-xl lg:text-[22px] uppercase tracking-wide rounded-2xl border-2 border-emerald-300/70 ring-4 ring-emerald-500/25 shadow-2xl shadow-emerald-600/35 hover:shadow-emerald-500/50 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer overflow-hidden"
+                className="group relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 min-h-[52px] bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-base sm:text-lg uppercase tracking-tight rounded-xl border border-emerald-300/60 ring-2 ring-emerald-500/20 shadow-xl shadow-emerald-600/30 hover:shadow-emerald-500/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer overflow-hidden"
               >
                 <div className="absolute inset-0 w-1/2 h-full bg-white/25 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000"></div>
                 <span>REALIZAR INSCRIÇÃO!</span>
-                <ArrowRight className="w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-1.5 transition-transform text-white shrink-0" />
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform text-white" />
               </button>
             </div>
           </div>
 
           {/* Right Column: Desktop Framed Image (Hidden on mobile < lg) with 3D Perspective */}
-          <div className="hidden lg:flex lg:col-span-6 xl:col-span-5 w-full justify-end [perspective:1400px]">
+          <div className="hidden lg:flex lg:col-span-7 w-full justify-end [perspective:1400px]">
             <motion.div 
               className="relative mx-auto lg:ml-auto w-full group max-w-2xl lg:max-w-none"
               initial={{ rotateY: -7, rotateX: 5, rotateZ: -1 }}

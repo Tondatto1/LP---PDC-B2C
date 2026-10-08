@@ -87,7 +87,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCtaModal }) => {
               <li className="flex items-start gap-2.5">
                 <Phone className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
-                  <span className="block font-bold text-slate-800">(67) 9 9903-4874</span>
+                  <a href="tel:+5567981246558" className="block font-bold text-slate-800 hover:text-emerald-600 transition">
+                    (67) 98124-6558
+                  </a>
                   <span className="text-[11px] text-slate-500 font-normal">(seg à sex, 08:00 às 17:00)</span>
                 </div>
               </li>
@@ -129,7 +131,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCtaModal }) => {
 
       {/* Sticky Floating WhatsApp Button */}
       <a
-        href={`https://wa.me/5567999034874?text=${encodeURIComponent('Olá, venho através da página e gostaria de saber mais sobre o método 21 em 7?')}`}
+        href={`https://wa.me/5567981246558?text=${encodeURIComponent('Olá. Gostaria de saber mais sobre a turma 33 do Campeão em Vendas?')}`}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-emerald-500 via-emerald-400 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 p-3.5 rounded-full border border-emerald-200/80 ring-2 ring-emerald-500/30 shadow-2xl shadow-emerald-500/50 flex items-center gap-2 font-black text-xs transition transform hover:scale-105 group"
