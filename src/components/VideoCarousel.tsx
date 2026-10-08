@@ -108,22 +108,20 @@ export const VideoCarousel: React.FC<VideoCarouselProps> = ({ videos, aspectRati
       {/* Carousel Container */}
       <div
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory py-2 px-1 scroll-smooth"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory py-2 px-1 scroll-smooth"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
       >
         {videos.map((video, idx) => {
           const isPlaying = playingVideoId === video.id;
-          const thumbnailUrl = isPortrait
-            ? `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`
-            : `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
+          const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
 
           return (
             <div
               key={video.id}
-              className={`shrink-0 snap-start bg-white border border-slate-200/90 rounded-3xl p-3 sm:p-4 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center ${
+              className={`shrink-0 snap-start bg-white border border-slate-200/90 rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center ${
                 isPortrait 
-                  ? 'w-[260px] sm:w-[280px]' 
-                  : 'w-[300px] sm:w-[360px] lg:w-[400px]'
+                  ? 'w-[235px] min-[380px]:w-[260px] sm:w-[280px]' 
+                  : 'w-[270px] min-[380px]:w-[315px] sm:w-[360px] lg:w-[400px]'
               }`}
             >
               <div

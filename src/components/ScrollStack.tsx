@@ -1,6 +1,5 @@
 import React, { useLayoutEffect, useRef, useCallback } from 'react';
 import type { ReactNode } from 'react';
-import Lenis from 'lenis';
 import './ScrollStack.css';
 
 export interface ScrollStackItemProps {
@@ -45,10 +44,10 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const scrollerRef = useRef<HTMLDivElement>(null);
   const stackCompletedRef = useRef(false);
   const animationFrameRef = useRef<number | null>(null);
-  const lenisRef = useRef<Lenis | null>(null);
   const cardsRef = useRef<HTMLElement[]>([]);
-  const lastTransformsRef = useRef(new Map<number, { translateY: number; scale: number; rotation: number; blur: number }>());
+  const lastTransformsRef = useRef<Map<number, { translateY: number; scale: number; rotation: number; blur: number }>>(new Map());
   const rafPendingRef = useRef(false);
+  const isIntersectingRef = useRef(false);
 
   const scrollerTopRef = useRef<number>(0);
   const endElementTopRef = useRef<number>(0);
@@ -103,6 +102,21 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const updateCardTransforms = useCallback(() => {
     const scroller = scrollerRef.current;
     if (!scroller || !cardsRef.current.length) return;
+
+    // On mobile screens, disable forced JS pinning to keep scrolling 100% fluid and cards fully readable
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    if (isMobile) {
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return;
+        const lastTransform = lastTransformsRef.current.get(i);
+        if (!lastTransform || lastTransform.translateY !== 0 || lastTransform.scale !== 1) {
+          card.style.transform = 'translate3d(0, 0, 0)';
+          card.style.filter = 'none';
+          lastTransformsRef.current.set(i, { translateY: 0, scale: 1, rotation: 0, blur: 0 });
+        }
+      });
+      return;
+    }
 
     const { scrollTop, containerHeight } = getScrollData();
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
@@ -199,6 +213,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   ]);
 
   const handleScroll = useCallback(() => {
+    if (!isIntersectingRef.current) return;
     if (rafPendingRef.current) return;
     rafPendingRef.current = true;
     requestAnimationFrame(() => {
@@ -210,6 +225,23 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;
     if (!scroller) return;
+
+    let observer: IntersectionObserver | null = null;
+    if (window.IntersectionObserver) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          isIntersectingRef.current = entries[0]?.isIntersecting ?? false;
+          if (isIntersectingRef.current) {
+            measurePositions();
+            updateCardTransforms();
+          }
+        },
+        { rootMargin: '200px 0px' }
+      );
+      observer.observe(scroller);
+    } else {
+      isIntersectingRef.current = true;
+    }
 
     const cards = Array.from(
       scroller.querySelectorAll('.scroll-stack-card')
@@ -234,13 +266,16 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
     const handleResize = () => {
       measurePositions();
-      handleScroll();
+      updateCardTransforms();
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleResize, { passive: true });
 
     return () => {
+      if (observer) {
+        observer.disconnect();
+      }
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
       if (animationFrameRef.current) {

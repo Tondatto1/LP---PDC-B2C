@@ -144,8 +144,10 @@ const LightRays: React.FC<LightRaysProps> = ({
 
       if (!containerRef.current) return;
 
+      const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia?.('(pointer: coarse)').matches);
+
       const renderer = new Renderer({
-        dpr: Math.min(window.devicePixelRatio, 1.25),
+        dpr: Math.min(window.devicePixelRatio || 1, isMobile ? 1.0 : 1.25),
         alpha: true
       });
       rendererRef.current = renderer;
@@ -315,9 +317,14 @@ void main() {
           return;
         }
 
+        if (document.hidden) {
+          animationIdRef.current = requestAnimationFrame(loop);
+          return;
+        }
+
         uniforms.iTime.value = t * 0.001;
 
-        if (followMouse && mouseInfluence > 0.0) {
+        if (followMouse && mouseInfluence > 0.0 && !isMobile) {
           const smoothing = 0.92;
 
           smoothMouseRef.current.x = smoothMouseRef.current.x * smoothing + mouseRef.current.x * (1 - smoothing);

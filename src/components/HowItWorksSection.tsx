@@ -16,17 +16,17 @@ export const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ onOpenCtaM
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight uppercase">
+          <h2 className="text-2xl min-[380px]:text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight uppercase">
             COMO FUNCIONA
           </h2>
           
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-slate-600 font-medium max-w-2xl mx-auto">
+          <p className="mt-2.5 sm:mt-4 text-sm min-[380px]:text-base sm:text-lg text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
             Assista ao vídeo e veja na prática como funciona a estrutura completa do programa para acelerar os resultados comerciais da sua equipe.
           </p>
         </div>
 
         {/* Vertical Video Player Frame (Formato Vertical 9:16) */}
-        <div className="max-w-[340px] sm:max-w-[380px] md:max-w-[400px] mx-auto">
+        <div className="w-full max-w-[285px] min-[360px]:max-w-[320px] min-[400px]:max-w-[350px] sm:max-w-[380px] md:max-w-[400px] mx-auto">
           <div className="relative rounded-2xl sm:rounded-3xl p-2 sm:p-3 bg-gradient-to-br from-emerald-400/40 via-teal-400/30 to-blue-500/40 shadow-2xl shadow-emerald-950/15 border border-white/90 backdrop-blur-xs">
             
             {/* 9:16 Vertical Video Frame with Vimeo Embed */}
@@ -36,6 +36,7 @@ export const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ onOpenCtaM
                 className="w-full h-full border-0 rounded-xl sm:rounded-2xl"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                 allowFullScreen
+                loading="lazy"
                 title="Apresentação do Método 21 em 7"
               />
             </div>
@@ -45,10 +46,10 @@ export const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ onOpenCtaM
           <div className="mt-8 sm:mt-10 text-center">
             <button
               onClick={onOpenCtaModal}
-              className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-base sm:text-lg shadow-xl shadow-emerald-600/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] uppercase tracking-wide cursor-pointer border border-emerald-300/40"
+              className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 min-h-[50px] rounded-2xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-sm min-[380px]:text-base sm:text-lg shadow-xl shadow-emerald-600/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] uppercase tracking-wide cursor-pointer border border-emerald-300/40"
             >
               <span>QUERO CAPACITAR MINHA EQUIPE</span>
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 shrink-0" />
             </button>
           </div>
 

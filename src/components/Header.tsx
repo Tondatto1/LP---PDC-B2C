@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sprout, PhoneCall, Menu, X, ArrowRight } from 'lucide-react';
-import GooeyNav from './GooeyNav';
+import { ArrowRight } from 'lucide-react';
 
 interface HeaderProps {
   onOpenCtaModal: () => void;
@@ -8,7 +7,6 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onOpenCtaModal }) => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     let tick = false;
@@ -25,15 +23,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCtaModal }) => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navLinks = [
-    { label: 'Para Quem É', href: '#para-quem-e' },
-    { label: 'Depoimentos', href: '#o-que-dizem' },
-    { label: 'Empresas', href: '#empresas' },
-    { label: 'Quem Somos', href: '#quem-somos' },
-    { label: 'Entregáveis', href: '#planos' },
-    { label: 'FAQ', href: '#faq' },
-  ];
 
   return (
     <header 
@@ -77,19 +66,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCtaModal }) => {
                 </span>
               </div>
               <span className="text-amber-300 font-black text-[11px] min-[380px]:text-[12px] tracking-wide uppercase leading-tight text-center mt-0.5">
-                ÚLTIMOS DIAS COM 60% OFF
+                ÚLTIMOS DIAS DE ATÉ 50% OFF
               </span>
-            </div>
-
-            {/* Desktop / Tablet Horizontal Banner (>= sm) */}
-            <div className="hidden sm:inline-flex items-center justify-center gap-2.5 lg:gap-3 px-4 lg:px-6 py-2 lg:py-2.5 rounded-full bg-slate-900/95 text-white border border-slate-800 shadow-md text-xs lg:text-sm xl:text-base font-extrabold tracking-tight w-full">
-              <span className="relative flex h-3 w-3 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-              </span>
-              <span className="text-emerald-400 font-black tracking-wide uppercase">65% DAS INSCRIÇÕES REALIZADAS</span>
-              <span className="text-slate-600 font-light shrink-0">|</span>
-              <span className="text-amber-300 font-black uppercase">ÚLTIMOS DIAS COM 60% OFF</span>
             </div>
           </div>
 

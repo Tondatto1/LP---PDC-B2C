@@ -35,11 +35,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50/80 via-emerald-50/40 via-white to-slate-50 font-sans text-slate-900 antialiased selection:bg-emerald-600 selection:text-white scroll-smooth">
+    <div className="min-h-screen w-full overflow-x-hidden bg-gradient-to-b from-blue-50/80 via-emerald-50/40 via-white to-slate-50 font-sans text-slate-900 antialiased selection:bg-emerald-600 selection:text-white scroll-smooth">
       {/* Top Fixed Header */}
       <Header onOpenCtaModal={handleScrollToPlan} />
 
-      <main>
+      <main className="w-full overflow-x-hidden">
         {/* 1ª SEÇÃO: Hero Banner */}
         <HeroSection onOpenCtaModal={handleScrollToPlan} />
 
