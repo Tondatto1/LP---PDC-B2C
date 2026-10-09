@@ -292,17 +292,6 @@ export const PlanBuilderSection: React.FC<PlanBuilderSectionProps> = ({ onOpenCt
 
         </div>
 
-        {/* CTA Button */}
-        <div className="mt-10 sm:mt-14 text-center">
-          <button
-            onClick={() => onOpenCtaModal('Estrutura do Programa')}
-            className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 sm:px-10 py-4 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-sm sm:text-base uppercase tracking-wider rounded-2xl border border-emerald-300/60 ring-2 ring-emerald-500/20 shadow-lg shadow-emerald-600/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-          >
-            <span>FINALIZAR INSCRIÇÃO</span>
-            <ArrowRight className="w-5 h-5" />
-          </button>
-        </div>
-
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sprout, Phone, Mail, MapPin, Instagram, Youtube, ArrowUp, MessageCircle } from 'lucide-react';
+import { BrandLogo } from './BrandLogo';
 
 interface FooterProps {
   onOpenCtaModal: () => void;
@@ -21,19 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCtaModal }) => {
           {/* Brand Info (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
             <a href="#" className="inline-block group py-1">
-              <img 
-                src="/imagens/logo_letra_preta_trans_hor.png" 
-                alt="AGRO MÉTODO PCP Logo" 
-                className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  if (!target.dataset.fallbackTried) {
-                    target.dataset.fallbackTried = 'true';
-                    target.src = '/imagens/logo-letra-preta-trans-hor.png';
-                  }
-                }}
-              />
+              <BrandLogo className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105" />
             </a>
 
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-sm font-medium">
@@ -74,6 +63,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCtaModal }) => {
               <li><a href="#empresas" className="hover:text-emerald-600 transition">Empresas Que Confiam</a></li>
               <li><a href="#quem-somos" className="hover:text-emerald-600 transition">Quem Somos & Método PCP</a></li>
               <li><a href="#planos" className="hover:text-emerald-600 transition">O Que Você Recebe</a></li>
+              <li><a href="#checkout-section" className="hover:text-emerald-600 transition">Formas de Pagamento</a></li>
               <li><a href="#faq" className="hover:text-emerald-600 transition">Perguntas Frequentes (FAQ)</a></li>
             </ul>
           </div>

@@ -26,32 +26,36 @@ export const TargetSection: React.FC<TargetSectionProps> = () => {
             </div>
           </div>
 
-          {/* Right Column: Framed Image (Circular / Moldura Redonda with Gradient Border) */}
-          <div className="lg:col-span-5 w-full flex justify-center lg:justify-end mt-2 lg:mt-0">
-            <div className="relative mx-auto lg:ml-auto w-[250px] min-[360px]:w-[280px] min-[400px]:w-[320px] sm:w-[360px] lg:w-[390px] aspect-square group">
-              {/* Ambient Glow */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/30 via-blue-500/30 to-emerald-500/30 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none"></div>
+          {/* Right Column: Framed Image (Moldura Circular de Cerutti & Matsuda com borda bem fina) */}
+          <div className="lg:col-span-5 w-full flex justify-center lg:justify-end mt-6 lg:mt-0">
+            <div className="relative w-full max-w-[320px] sm:max-w-[370px] lg:max-w-[410px] aspect-square group">
+              {/* Subtle Ambient Glow */}
+              <div className="absolute -inset-1 sm:-inset-1.5 bg-gradient-to-tr from-emerald-500/30 via-teal-400/20 to-blue-500/25 rounded-full blur-md opacity-70 group-hover:opacity-100 transition duration-700 pointer-events-none"></div>
               
-              {/* Circular Thin Frame with Blue-Green Gradient */}
-              <div className="relative w-full h-full p-[2px] bg-gradient-to-r from-emerald-500 via-blue-500 to-emerald-500 rounded-full shadow-2xl shadow-emerald-950/15 overflow-hidden">
-                <div className="relative w-full h-full overflow-hidden rounded-full bg-slate-100">
+              {/* Moldura Circular com Borda Bem Fina (1.5px a 2px) */}
+              <div className="relative w-full h-full p-[1.5px] sm:p-[2px] bg-gradient-to-tr from-emerald-500 via-teal-400 to-blue-500 rounded-full shadow-xl shadow-emerald-950/15">
+                {/* Circular Image Container */}
+                <div className="relative w-full h-full rounded-full overflow-hidden bg-slate-950 aspect-square">
                   <img
-                    src="/imagens/ceruti_,matsuda.png.jpeg"
-                    alt="Treinamento Comercial - Método DNA Cerutti"
-                    className="w-full h-full object-cover object-[center_32%] rounded-full transform group-hover:scale-[1.03] transition-transform duration-500"
-                    loading="lazy"
+                    src="/imagens/ceruti_,matsuda.png"
+                    alt="Cerutti e Matsuda - Agro Método PCP"
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                    style={{ objectPosition: 'center 28%' }}
+                    loading="eager"
                     decoding="async"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      if (target.src.includes('ceruti_,matsuda')) {
-                        target.src = '/imagens/cerutti_matsuda.png';
-                      } else {
-                        target.src = '/imagens/cerutti_turma.png.jpeg';
+                      const currentSrc = target.getAttribute('src');
+                      if (currentSrc === '/imagens/ceruti_,matsuda.png') {
+                        target.src = '/imagens/ceruti_matsuda.png';
+                      } else if (currentSrc === '/imagens/ceruti_matsuda.png') {
+                        target.src = '/imagens/ceruti_,matsuda.png.jpeg';
                       }
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent pointer-events-none rounded-full"></div>
+                  {/* Delicada linha interna de acabamento */}
+                  <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/10 pointer-events-none"></div>
                 </div>
               </div>
             </div>

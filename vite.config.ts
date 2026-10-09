@@ -25,9 +25,8 @@ function syncImagesPlugin(): Plugin {
       }
 
       const aliases: [string, string][] = [
-        ['ceruti_,matsuda.png.jpeg', 'ceruti_,matsuda.png'],
-        ['ceruti_,matsuda.png.jpeg', 'ceruti_matsuda.png'],
-        ['ceruti_,matsuda.png.jpeg', 'cerutti_matsuda.png'],
+        ['ceruti_,matsuda.png', 'ceruti_matsuda.png'],
+        ['ceruti_,matsuda.png', 'cerutti_matsuda.png'],
         ['cerutti_turma.png.jpeg', 'cerutti_turma.png'],
         ['cerutti_turma.png.jpeg', 'cerutti_turma.jpeg'],
         ['cerutti_turma.png.jpeg', 'cerutti_turma.jpg'],
@@ -43,13 +42,26 @@ function syncImagesPlugin(): Plugin {
       aliases.forEach(([source, alias]) => {
         const sourcePath = path.join(publicImagens, source);
         const aliasPath = path.join(publicImagens, alias);
-        if (fs.existsSync(sourcePath) && !fs.existsSync(aliasPath)) {
+        if (fs.existsSync(sourcePath)) {
           fs.copyFileSync(sourcePath, aliasPath);
         }
       });
     } catch (e) {
       console.error('Error in syncImagesPlugin:', e);
     }
+  };
+
+  const getMimeType = (ext: string): string => {
+    const map: Record<string, string> = {
+      '.png': 'image/png',
+      '.jpg': 'image/jpeg',
+      '.jpeg': 'image/jpeg',
+      '.webp': 'image/webp',
+      '.svg': 'image/svg+xml',
+      '.gif': 'image/gif',
+      '.ico': 'image/x-icon',
+    };
+    return map[ext.toLowerCase()] || 'application/octet-stream';
   };
 
   return {
@@ -60,8 +72,44 @@ function syncImagesPlugin(): Plugin {
     configureServer(server) {
       sync();
       server.middlewares.use((req, res, next) => {
-        if (req.url && (req.url.startsWith('/Imagens/') || req.url.startsWith('/imagens/'))) {
-          sync();
+        if (!req.url) return next();
+        const urlWithoutQuery = req.url.split('?')[0];
+        const lowerUrl = urlWithoutQuery.toLowerCase();
+
+        if (lowerUrl.startsWith('/imagens/') || lowerUrl.startsWith('/imagens')) {
+          let decoded: string;
+          try {
+            decoded = decodeURIComponent(urlWithoutQuery);
+          } catch {
+            decoded = urlWithoutQuery;
+          }
+
+          const filename = decoded.replace(/^\/[Ii]magens\/?/, '');
+          if (!filename) return next();
+
+          const publicDir = path.resolve(__dirname, 'public/imagens');
+          const rootDir = path.resolve(__dirname, 'Imagens');
+
+          const candidatePaths = [
+            path.join(publicDir, filename),
+            path.join(rootDir, filename),
+            path.join(publicDir, filename.toLowerCase()),
+            path.join(publicDir, filename.replace(/_/g, '-')),
+            path.join(publicDir, filename.replace(/-/g, '_')),
+            path.join(publicDir, filename.replace(/ /g, '_')),
+            path.join(publicDir, filename.replace(/_/g, ' ')),
+          ];
+
+          for (const targetPath of candidatePaths) {
+            if (fs.existsSync(targetPath) && fs.statSync(targetPath).isFile()) {
+              const ext = path.extname(targetPath);
+              res.setHeader('Content-Type', getMimeType(ext));
+              res.setHeader('Cache-Control', 'public, max-age=3600');
+              const stream = fs.createReadStream(targetPath);
+              stream.pipe(res);
+              return;
+            }
+          }
         }
         next();
       });
