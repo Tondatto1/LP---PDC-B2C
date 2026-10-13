@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Calendar } from 'lucide-react';
 import { HERO_STATS } from '../data/agroData';
 import LightRays from './LightRays';
 import LogoLoop, { LogoItem } from './LogoLoop';
@@ -118,6 +118,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenCtaModal }) => {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-100/90 via-teal-50 to-blue-50 border border-emerald-200 text-emerald-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-2xs uppercase tracking-wide">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0"></span>
                 <span>33° TURMA</span>
+              </div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-100/90 via-teal-50 to-blue-50 border border-emerald-200 text-emerald-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-2xs uppercase tracking-wide">
+                <Calendar className="w-4 h-4 text-emerald-700 shrink-0" />
+                <span>INICIA-SE EM 27/10</span>
               </div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-100/90 via-teal-50 to-blue-50 border border-emerald-200 text-emerald-950 font-black text-xs min-[360px]:text-sm sm:text-sm shadow-2xs uppercase tracking-wide">
                 <span className="w-2.5 h-2.5 rounded-full bg-teal-600 shrink-0"></span>
