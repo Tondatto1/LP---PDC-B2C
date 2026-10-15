@@ -1,224 +1,90 @@
 import React from 'react';
 import { 
-  CreditCard, 
-  QrCode, 
-  FileText, 
-  Percent,
-  ArrowRight,
+  MessageCircle, 
+  ArrowRight, 
+  UserCheck, 
   Sparkles
 } from 'lucide-react';
 
 export const CheckoutSection: React.FC = () => {
-  // URLs de redirecionamento para os checkouts reais
-  const CHECKOUT_LINKS = {
-    pix: 'https://www.asaas.com/000/c/ye5dnn67lxc68fji',
-    cartao: 'https://www.asaas.com/000/c/hqudzsxxedxxbslo',
-    boleto: 'https://pay.tmb.com.br/AGROVENDEDOR/SPT300767ME'
-  };
+  const WHATSAPP_PHONE = '5567999034874';
+  const WHATSAPP_MESSAGE = 'Olá, gostaria de fazer parte da turma 33 do Campeão em Vendas.';
+  const WHATSAPP_URL = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
   return (
     <section 
       id="checkout-section" 
-      className="py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-white via-emerald-50/40 via-blue-50/30 to-slate-50 text-slate-900 relative overflow-hidden border-t border-slate-200/80"
+      className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-white via-emerald-50/40 via-teal-50/20 to-slate-50 text-slate-900 relative overflow-hidden border-t border-slate-200/80"
     >
       {/* Decorative ambient backdrop */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] lg:w-[850px] h-[500px] bg-gradient-to-r from-emerald-200/25 via-teal-200/20 to-blue-200/25 blur-3xl pointer-events-none rounded-full" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[650px] lg:w-[900px] h-[550px] bg-gradient-to-r from-emerald-200/25 via-teal-200/25 to-blue-200/20 blur-3xl pointer-events-none rounded-full" />
       
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Título Oficial da Seção */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/90 border border-emerald-200/90 text-emerald-900 font-black text-xs sm:text-sm uppercase tracking-wider mb-4 shadow-2xs">
+            <Sparkles className="w-4 h-4 text-emerald-700 shrink-0" />
+            <span>Condição Exclusiva • Turma 33</span>
+          </div>
+
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight uppercase">
-            FORMAS DE PAGAMENTO
+            GARANTA SUA VAGA
           </h2>
 
-          {/* Ancoragem de Valor Principal Destacada */}
-          <div className="mt-6 sm:mt-8 max-w-xl mx-auto bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 text-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-xl border border-slate-700/80 relative overflow-hidden">
-            <div className="absolute -right-8 -bottom-8 w-36 h-36 bg-emerald-500/20 rounded-full blur-2xl pointer-events-none" />
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-400" />
-
-            <div className="relative z-10 flex flex-col items-center text-center">
-              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 my-2">
-                <span className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-400/90 line-through decoration-rose-500/90 decoration-3 sm:decoration-4">
-                  R$ 6.377,00
-                </span>
-                
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-xl bg-emerald-500 text-slate-950 font-black text-xs sm:text-sm tracking-wide shadow-md">
-                  <Percent className="w-4 h-4" />
-                  ATÉ 47% DE ECONOMIA NA TURMA 33
-                </span>
-              </div>
-            </div>
-          </div>
+          <p className="mt-3 text-sm sm:text-base text-slate-600 font-medium max-w-xl mx-auto">
+            Fale diretamente com um dos nossos consultores especialistas para tirar suas dúvidas, conferir as condições personalizadas e garantir o seu lugar na 33ª turma.
+          </p>
         </div>
 
-        {/* The 3 Payment Option Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 items-stretch">
+        {/* Card Único e Elegante */}
+        <div className="bg-white rounded-3xl border-2 border-emerald-500/90 shadow-2xl shadow-emerald-900/10 p-6 sm:p-10 relative overflow-hidden ring-4 ring-emerald-500/10">
           
-          {/* Card 1: À VISTA NO PIX */}
-          <div className="bg-white border border-slate-200/90 hover:border-emerald-500/80 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 relative group shadow-lg hover:shadow-2xl">
-            <div>
-              {/* Badges */}
-              <div className="flex items-center justify-between gap-2 mb-4">
-                <span className="text-xs font-black uppercase tracking-wider text-emerald-800 bg-emerald-100 border border-emerald-300/80 px-3 py-1 rounded-full">
-                  47% DE DIFERENÇA
-                </span>
-              </div>
+          {/* Top highlight bar */}
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600" />
+          
+          {/* Subtle background glow */}
+          <div className="absolute -right-20 -top-20 w-64 h-64 bg-emerald-100/50 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-teal-100/40 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Title & Icon */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 border border-emerald-200 shadow-xs">
-                  <QrCode className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-black text-slate-900 leading-tight uppercase">
-                    À VISTA NO PIX
-                  </h3>
-                  <span className="text-xs text-slate-500 font-semibold">Liberação imediata</span>
-                </div>
-              </div>
-
-              {/* Pricing Box */}
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 my-4">
-                <div className="text-3xl sm:text-4xl font-black text-slate-900 mt-1 tracking-tight">
-                  R$ 3.393,00
-                </div>
-                <div className="text-xs font-bold text-emerald-700 mt-2 flex items-center gap-1.5 bg-emerald-50 p-2 rounded-lg border border-emerald-200/60">
-                  <Percent className="w-4 h-4 shrink-0" />
-                  <span>Economia de R$ 2.984,00 (47% de diferença)</span>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <div className="mt-6 pt-4 border-t border-slate-100">
-              <a
-                href={CHECKOUT_LINKS.pix}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-4 px-4 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.98] text-white font-black text-xs sm:text-sm uppercase tracking-wider rounded-xl border border-emerald-300/60 shadow-lg shadow-emerald-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
-              >
-                <span>À VISTA NO PIX</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-
-          {/* Card 2: CARTÃO DE CRÉDITO EM ATÉ 10X (Destaque Principal) */}
-          <div className="bg-white border-2 border-emerald-500 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 relative group shadow-2xl shadow-emerald-600/15 md:-translate-y-3 ring-2 ring-emerald-500/20">
+          <div className="relative z-10 flex flex-col items-center text-center">
             
-            {/* Top Pill Highlight */}
-            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider shadow-lg flex items-center gap-1.5 whitespace-nowrap">
-              <Sparkles className="w-3.5 h-3.5 fill-current" />
-              <span>Opção Mais Escolhida</span>
-            </div>
-
-            <div>
-              {/* Badges */}
-              <div className="flex items-center justify-between gap-2 mb-4 mt-1">
-                <span className="text-xs font-black uppercase tracking-wider text-emerald-800 bg-emerald-100 border border-emerald-300/80 px-3 py-1 rounded-full">
-                  41% DE DIFERENÇA
-                </span>
+            {/* Consultant Avatar / Icon cluster */}
+            <div className="relative mb-5">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center shadow-lg shadow-emerald-600/30 ring-4 ring-emerald-100">
+                <UserCheck className="w-8 h-8 sm:w-10 sm:h-10" />
               </div>
-
-              {/* Title & Icon */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 border border-emerald-300 shadow-xs">
-                  <CreditCard className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-black text-slate-900 leading-tight uppercase">
-                    CARTÃO DE CRÉDITO EM ATÉ 10X
-                  </h3>
-                  <span className="text-xs text-emerald-800 font-bold">10x de R$ 377,00</span>
-                </div>
-              </div>
-
-              {/* Pricing Box */}
-              <div className="bg-emerald-50/90 border border-emerald-300/90 rounded-2xl p-4 my-4 ring-1 ring-emerald-500/20">
-                <div className="flex items-baseline gap-1.5 mt-1">
-                  <span className="text-sm font-bold text-slate-600">10x de</span>
-                  <span className="text-3xl sm:text-4xl font-black text-emerald-800 tracking-tight">
-                    R$ 377,00
-                  </span>
-                </div>
-                <div className="text-xs text-slate-600 mt-1 font-semibold">
-                  Valor total: R$ 3.770,00
-                </div>
-                <div className="text-xs font-bold text-emerald-800 mt-2 flex items-center gap-1.5 bg-white/80 p-2 rounded-lg border border-emerald-200">
-                  <Percent className="w-4 h-4 shrink-0" />
-                  <span>Economia de R$ 2.607,00 (41% de diferença)</span>
-                </div>
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center border-2 border-white shadow-xs">
+                <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
               </div>
             </div>
 
-            {/* CTA Button */}
-            <div className="mt-6 pt-4 border-t border-slate-100">
+            {/* Title & Consultant Notice */}
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tight uppercase mb-6 sm:mb-8">
+              Atendimento Consultivo Personalizado
+            </h3>
+
+            {/* High-Converting CTA Button */}
+            <div className="w-full max-w-md">
               <a
-                href={CHECKOUT_LINKS.cartao}
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-4 px-4 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.98] text-white font-black text-xs sm:text-sm uppercase tracking-wider rounded-xl shadow-xl shadow-emerald-600/35 transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
+                className="group relative w-full py-4 sm:py-5 px-6 sm:px-8 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.98] text-white font-black text-base sm:text-lg uppercase tracking-wider rounded-2xl shadow-xl shadow-emerald-600/35 hover:shadow-emerald-500/50 transition-all flex items-center justify-center gap-3 cursor-pointer text-center border border-emerald-300/60 overflow-hidden"
               >
-                <span>CARTÃO DE CRÉDITO EM ATÉ 10X</span>
-                <ArrowRight className="w-4 h-4" />
+                <div className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 pointer-events-none" />
+                <MessageCircle className="w-6 h-6 shrink-0 fill-current" />
+                <span>QUERO VENDER MAIS!</span>
+                <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
               </a>
-            </div>
-          </div>
 
-          {/* Card 3: BOLETO EM ATÉ 10X */}
-          <div className="bg-white border border-slate-200/90 hover:border-emerald-500/80 rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 relative group shadow-lg hover:shadow-2xl">
-            <div>
-              {/* Badges */}
-              <div className="flex items-center justify-between gap-2 mb-4">
-                <span className="text-xs font-black uppercase tracking-wider text-teal-800 bg-teal-100 border border-teal-300/80 px-3 py-1 rounded-full">
-                  29% DE DIFERENÇA
-                </span>
-              </div>
-
-              {/* Title & Icon */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-teal-100 text-teal-800 flex items-center justify-center shrink-0 border border-teal-200 shadow-xs">
-                  <FileText className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-black text-slate-900 leading-tight uppercase">
-                    BOLETO EM ATÉ 10X
-                  </h3>
-                  <span className="text-xs text-slate-500 font-semibold">10x de R$ 453,08</span>
-                </div>
-              </div>
-
-              {/* Pricing Box */}
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 my-4">
-                <div className="flex items-baseline gap-1.5 mt-1">
-                  <span className="text-sm font-bold text-slate-600">10x de</span>
-                  <span className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                    R$ 453,08
-                  </span>
-                </div>
-                <div className="text-xs text-slate-600 mt-1 font-semibold">
-                  Valor total: R$ 4.530,80
-                </div>
-                <div className="text-xs font-bold text-teal-800 mt-2 flex items-center gap-1.5 bg-teal-50 p-2 rounded-lg border border-teal-200/60">
-                  <Percent className="w-4 h-4 shrink-0" />
-                  <span>Economia de R$ 1.846,20 (29% de diferença)</span>
-                </div>
+              {/* Informative Subtitle below button */}
+              <div className="flex items-center justify-center gap-2 mt-3.5 text-xs text-slate-500 font-medium">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Você entrará em contato com um de nossos consultores</span>
               </div>
             </div>
 
-            {/* CTA Button */}
-            <div className="mt-6 pt-4 border-t border-slate-100">
-              <a
-                href={CHECKOUT_LINKS.boleto}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-4 px-4 bg-slate-800 hover:bg-slate-900 active:scale-[0.98] text-white font-black text-xs sm:text-sm uppercase tracking-wider rounded-xl border border-slate-700 shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer hover:border-emerald-500 text-center"
-              >
-                <span>BOLETO EM ATÉ 10X</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
           </div>
 
         </div>
