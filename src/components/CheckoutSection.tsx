@@ -3,13 +3,14 @@ import {
   MessageCircle, 
   ArrowRight, 
   UserCheck, 
-  Sparkles
+  Sparkles,
+  CheckCircle2
 } from 'lucide-react';
+import { usePartner } from '../context/PartnerContext';
 
 export const CheckoutSection: React.FC = () => {
-  const WHATSAPP_PHONE = '5567999034874';
-  const WHATSAPP_MESSAGE = 'Olá, gostaria de fazer parte da turma 33 do Campeão em Vendas.';
-  const WHATSAPP_URL = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  const { activePartner } = usePartner();
+  const WHATSAPP_URL = activePartner.whatsappUrl;
 
   return (
     <section 
@@ -60,9 +61,16 @@ export const CheckoutSection: React.FC = () => {
             </div>
 
             {/* Title & Consultant Notice */}
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tight uppercase mb-6 sm:mb-8">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tight uppercase mb-4 sm:mb-5">
               Atendimento Consultivo Personalizado
             </h3>
+
+            {activePartner.isPartner && (
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-950 font-semibold text-xs sm:text-sm mb-5 shadow-2xs">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Indicação Ativa: <strong className="font-extrabold text-emerald-800">{activePartner.name}</strong></span>
+              </div>
+            )}
 
             {/* High-Converting CTA Button */}
             <div className="w-full max-w-md">
@@ -81,7 +89,11 @@ export const CheckoutSection: React.FC = () => {
               {/* Informative Subtitle below button */}
               <div className="flex items-center justify-center gap-2 mt-3.5 text-xs text-slate-500 font-medium">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>Você entrará em contato com um de nossos consultores</span>
+                <span>
+                  {activePartner.isPartner 
+                    ? `Atendimento prioritário via parceria com ${activePartner.name}`
+                    : 'Você entrará em contato com um de nossos consultores'}
+                </span>
               </div>
             </div>
 

@@ -1,12 +1,14 @@
 import React from 'react';
 import { Sprout, Phone, Mail, MapPin, Instagram, Youtube, ArrowUp, MessageCircle } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
+import { usePartner } from '../context/PartnerContext';
 
 interface FooterProps {
   onOpenCtaModal: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenCtaModal }) => {
+  const { activePartner } = usePartner();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -121,14 +123,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCtaModal }) => {
 
       {/* Sticky Floating WhatsApp Button */}
       <a
-        href={`https://wa.me/5567981246558?text=${encodeURIComponent('Olá. Gostaria de saber mais sobre a turma 33 do Campeão em Vendas?')}`}
+        href={activePartner.whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-emerald-500 via-emerald-400 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 p-3.5 rounded-full border border-emerald-200/80 ring-2 ring-emerald-500/30 shadow-2xl shadow-emerald-500/50 flex items-center gap-2 font-black text-xs transition transform hover:scale-105 group"
         aria-label="Atendimento via WhatsApp"
       >
         <MessageCircle className="w-6 h-6 fill-slate-950 text-emerald-950" />
-        <span className="hidden sm:inline-block pr-1 uppercase tracking-wider">Falar com consultor</span>
+        <span className="hidden sm:inline-block pr-1 uppercase tracking-wider">
+          {activePartner.isPartner ? `Consultor (${activePartner.name})` : 'Falar com consultor'}
+        </span>
       </a>
 
     </footer>

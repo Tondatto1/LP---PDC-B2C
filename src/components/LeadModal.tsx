@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2, Shield, ArrowRight, Building2, Phone, Mail, User, Sparkles } from 'lucide-react';
 import { LeadFormData } from '../types';
+import { usePartner } from '../context/PartnerContext';
 
 interface LeadModalProps {
   isOpen: boolean;
@@ -9,6 +10,7 @@ interface LeadModalProps {
 }
 
 export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, defaultPlan }) => {
+  const { activePartner } = usePartner();
   const [formData, setFormData] = useState<LeadFormData>({
     fullName: '',
     email: '',
@@ -74,9 +76,8 @@ export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, defaultPl
       }
     }
 
-    // Construct WhatsApp URL
-    const message = `Olá. Gostaria de saber mais sobre a turma 33 do Campeão em Vendas?`;
-    const waUrl = `https://wa.me/5567981246558?text=${encodeURIComponent(message)}`;
+    // Construct WhatsApp URL with partner tracking if active
+    const waUrl = activePartner.whatsappUrl;
 
     setTimeout(() => {
       setLoading(false);
