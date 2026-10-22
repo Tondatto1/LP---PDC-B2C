@@ -130,6 +130,95 @@ export function buildWhatsAppUrl(phone: string = DEFAULT_WHATSAPP_PHONE, message
   return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
 }
 
+const SYSTEM_RESERVED_KEYS = new Set([
+  'parceiros', 'admin', 'gerador', 'preview', 'fbclid', 'gclid',
+  'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'msg', 'mensagem'
+]);
+
+const PAGE_SECTIONS = new Set([
+  'para-quem-e', 'como-funciona', 'o-que-dizem', 'empresas',
+  'quem-somos', 'planos', 'checkout-section', 'faq', 'topo', 'inicio', ''
+]);
+
+// Extrai o identificador do parceiro aceitando múltiplos formatos:
+// 1. Chave direta sem valor: ?tauani_fontani ou ?tauani_fontani=
+// 2. Parâmetro explícito: ?ref=tauani_fontani ou ?parceiro=tauani_fontani ou ?p=...
+// 3. Hash: #tauani_fontani ou #ref=tauani_fontani
+// 4. Path: /tauani_fontani
+export function extractPartnerFromUrl(): string | null {
+  if (typeof window === 'undefined') return null;
+
+  try {
+    const search = window.location.search || '';
+    const hash = window.location.hash || '';
+    const pathname = window.location.pathname || '';
+    const urlParams = new URLSearchParams(search);
+
+    // 1. Busca por parâmetros com chaves explícitas
+    const explicitKeys = [
+      'parceiro', 'ref', 'p', 'partner', 'indicacao', 
+      'ind', 'rep', 'consultor', 'afiliado', 'utm_source'
+    ];
+    for (const key of explicitKeys) {
+      const val = urlParams.get(key);
+      if (val && val.trim() !== '') {
+        return decodeURIComponent(val.trim());
+      }
+    }
+
+    // 2. Busca por query direta: ex: ?tauani_fontani ou ?tauani_fontani=
+    if (search.startsWith('?')) {
+      const rawSearch = search.slice(1).trim();
+      if (rawSearch) {
+        // Divide pelo primeiro '&' caso haja múltiplos parâmetros
+        const firstSegment = rawSearch.split('&')[0];
+        const [rawKey, rawVal] = firstSegment.split('=');
+        const cleanKey = decodeURIComponent(rawKey || '').trim();
+        const cleanVal = decodeURIComponent(rawVal || '').trim();
+
+        // Caso ?tauani_fontani (sem '=') ou ?tauani_fontani= (valor vazio)
+        if (cleanKey && !cleanVal && !SYSTEM_RESERVED_KEYS.has(cleanKey.toLowerCase())) {
+          return cleanKey;
+        }
+
+        // Também varre todas as entradas do URLSearchParams para encontrar qualquer chave com valor vazio
+        for (const [k, v] of urlParams.entries()) {
+          const kClean = decodeURIComponent(k).trim();
+          if (kClean && (!v || v.trim() === '') && !SYSTEM_RESERVED_KEYS.has(kClean.toLowerCase())) {
+            return kClean;
+          }
+        }
+      }
+    }
+
+    // 3. Busca no hash (#tauani_fontani ou #ref=tauani_fontani)
+    if (hash.startsWith('#')) {
+      const rawHash = hash.slice(1).trim();
+      if (rawHash && !PAGE_SECTIONS.has(rawHash.toLowerCase())) {
+        if (rawHash.startsWith('ref=') || rawHash.startsWith('parceiro=')) {
+          const hashVal = rawHash.split('=')[1] || '';
+          if (hashVal) return decodeURIComponent(hashVal.trim());
+        }
+        if (!rawHash.includes('/') && !rawHash.includes('&') && !rawHash.includes('=')) {
+          return decodeURIComponent(rawHash);
+        }
+      }
+    }
+
+    // 4. Busca no pathname (ex: /tauani_fontani)
+    if (pathname && pathname !== '/' && !pathname.includes('.') && !pathname.startsWith('/api')) {
+      const cleanPath = pathname.replace(/^\/+|\/+$/g, '').trim();
+      if (cleanPath && !PAGE_SECTIONS.has(cleanPath.toLowerCase()) && !SYSTEM_RESERVED_KEYS.has(cleanPath.toLowerCase())) {
+        return decodeURIComponent(cleanPath);
+      }
+    }
+  } catch {
+    // ignore
+  }
+
+  return null;
+}
+
 // Detectar o parceiro atual a partir da URL ou da sessão anterior
 export function detectActivePartner(): ActivePartnerState {
   if (typeof window === 'undefined') {
@@ -144,19 +233,28 @@ export function detectActivePartner(): ActivePartnerState {
   }
 
   const urlParams = new URLSearchParams(window.location.search);
-  
-  // Parâmetros aceitos na URL para identificar o parceiro
-  const partnerParam = 
-    urlParams.get('parceiro') ||
-    urlParams.get('ref') ||
-    urlParams.get('p') ||
-    urlParams.get('partner') ||
-    urlParams.get('utm_source');
-
-  // Parâmetro opcional de mensagem personalizada direta via URL (ex: &msg=...)
   const directMessageParam = urlParams.get('msg') || urlParams.get('mensagem');
 
-  // Se veio parâmetro na URL
+  // Identificador obtido de ?tauani_fontani, ?ref=tauani_fontani, etc.
+  const partnerParam = extractPartnerFromUrl();
+
+  // Reset flag caso queira testar sem parceiro
+  if (partnerParam && ['limpar', 'reset', 'clear', 'padrao'].includes(partnerParam.toLowerCase())) {
+    try {
+      sessionStorage.removeItem(STORAGE_ACTIVE_PARTNER_KEY);
+      localStorage.removeItem(STORAGE_ACTIVE_PARTNER_KEY);
+    } catch {}
+    return {
+      id: '',
+      name: '',
+      message: DEFAULT_WHATSAPP_MESSAGE,
+      phone: DEFAULT_WHATSAPP_PHONE,
+      isPartner: false,
+      whatsappUrl: buildWhatsAppUrl(DEFAULT_WHATSAPP_PHONE, DEFAULT_WHATSAPP_MESSAGE)
+    };
+  }
+
+  // Se veio parâmetro de parceiro na URL
   if (partnerParam && partnerParam.trim() !== '') {
     const rawId = partnerParam.trim().toLowerCase();
     const allPartners = getAllPartners();
@@ -164,7 +262,9 @@ export function detectActivePartner(): ActivePartnerState {
 
     if (matched) {
       // Parceiro já cadastrado
-      const finalMessage = directMessageParam || matched.message;
+      const defaultMsg = buildPartnerDefaultMessage(matched.name || matched.id);
+      const finalMessage = directMessageParam || 
+        (matched.message && matched.message.includes('indicação do(a)') ? matched.message : defaultMsg);
       const finalPhone = matched.phone || DEFAULT_WHATSAPP_PHONE;
 
       const state: ActivePartnerState = {
@@ -183,7 +283,7 @@ export function detectActivePartner(): ActivePartnerState {
 
       return state;
     } else {
-      // Parceiro dinâmico (não cadastrado antes, mas informado na URL, ex: ?ref=joao)
+      // Parceiro dinâmico (ex: ?tauani_fontani -> "Tauani Fontani")
       const formattedName = formatSlugToName(partnerParam);
       const identifierLabel = formattedName || partnerParam;
       const dynamicMessage = directMessageParam || buildPartnerDefaultMessage(identifierLabel);
@@ -212,9 +312,15 @@ export function detectActivePartner(): ActivePartnerState {
     if (saved) {
       const parsed = JSON.parse(saved);
       if (parsed && parsed.isPartner) {
+        // Assegura que o template da mensagem seja o novo mesmo se gravado anteriormente com mensagem antiga
+        const validMessage = (parsed.message && parsed.message.includes('indicação do(a)'))
+          ? parsed.message
+          : buildPartnerDefaultMessage(parsed.name || parsed.id);
+
         return {
           ...parsed,
-          whatsappUrl: buildWhatsAppUrl(parsed.phone || DEFAULT_WHATSAPP_PHONE, parsed.message)
+          message: validMessage,
+          whatsappUrl: buildWhatsAppUrl(parsed.phone || DEFAULT_WHATSAPP_PHONE, validMessage)
         };
       }
     }

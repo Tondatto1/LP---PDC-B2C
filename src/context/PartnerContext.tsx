@@ -33,6 +33,14 @@ export const PartnerProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const detected = detectActivePartner();
     setActivePartner(detected);
 
+    const handleUrlChange = () => {
+      const refreshed = detectActivePartner();
+      setActivePartner(refreshed);
+    };
+
+    window.addEventListener('popstate', handleUrlChange);
+    window.addEventListener('hashchange', handleUrlChange);
+
     // Auto-open modal if url contains ?parceiros=1 or ?admin=parceiros
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
@@ -40,6 +48,11 @@ export const PartnerProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setIsPartnerModalOpen(true);
       }
     }
+
+    return () => {
+      window.removeEventListener('popstate', handleUrlChange);
+      window.removeEventListener('hashchange', handleUrlChange);
+    };
   }, []);
 
   const openPartnerModal = () => setIsPartnerModalOpen(true);
