@@ -3,7 +3,6 @@ import {
   MessageCircle, 
   ArrowRight, 
   UserCheck, 
-  Sparkles,
   CheckCircle2
 } from 'lucide-react';
 import { usePartner } from '../context/PartnerContext';
@@ -24,18 +23,9 @@ export const CheckoutSection: React.FC = () => {
         
         {/* Título Oficial da Seção */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/90 border border-emerald-200/90 text-emerald-900 font-black text-xs sm:text-sm uppercase tracking-wider mb-4 shadow-2xs">
-            <Sparkles className="w-4 h-4 text-emerald-700 shrink-0" />
-            <span>Condição Exclusiva • Turma 33</span>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight uppercase">
             GARANTA SUA VAGA
           </h2>
-
-          <p className="mt-3 text-sm sm:text-base text-slate-600 font-medium max-w-xl mx-auto">
-            Fale diretamente com um dos nossos consultores especialistas para tirar suas dúvidas, conferir as condições personalizadas e garantir o seu lugar na 33ª turma.
-          </p>
         </div>
 
         {/* Card Único e Elegante */}
@@ -62,7 +52,7 @@ export const CheckoutSection: React.FC = () => {
 
             {/* Title & Consultant Notice */}
             <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tight uppercase mb-4 sm:mb-5">
-              Atendimento Consultivo Personalizado
+              Clique no botão abaixo.
             </h3>
 
             {activePartner.isPartner && (
@@ -85,16 +75,6 @@ export const CheckoutSection: React.FC = () => {
                 <span>QUERO VENDER MAIS!</span>
                 <ArrowRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" />
               </a>
-
-              {/* Informative Subtitle below button */}
-              <div className="flex items-center justify-center gap-2 mt-3.5 text-xs text-slate-500 font-medium">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>
-                  {activePartner.isPartner 
-                    ? `Atendimento prioritário via parceria com ${activePartner.name}`
-                    : 'Você entrará em contato com um de nossos consultores'}
-                </span>
-              </div>
             </div>
 
           </div>
