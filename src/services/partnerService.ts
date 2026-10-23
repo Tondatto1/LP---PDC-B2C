@@ -306,27 +306,13 @@ export function detectActivePartner(): ActivePartnerState {
     }
   }
 
-  // Se não tem na URL, tenta recuperar de sessão anterior para não perder atribuição
+  // Se o link está sem ref: limpa qualquer resquício de parceiro no storage e retorna a LP padrão e limpa
   try {
-    const saved = sessionStorage.getItem(STORAGE_ACTIVE_PARTNER_KEY) || localStorage.getItem(STORAGE_ACTIVE_PARTNER_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (parsed && parsed.isPartner) {
-        // Assegura que o template da mensagem seja o novo mesmo se gravado anteriormente com mensagem antiga
-        const validMessage = (parsed.message && parsed.message.includes('indicação do(a)'))
-          ? parsed.message
-          : buildPartnerDefaultMessage(parsed.name || parsed.id);
-
-        return {
-          ...parsed,
-          message: validMessage,
-          whatsappUrl: buildWhatsAppUrl(parsed.phone || DEFAULT_WHATSAPP_PHONE, validMessage)
-        };
-      }
-    }
+    sessionStorage.removeItem(STORAGE_ACTIVE_PARTNER_KEY);
+    localStorage.removeItem(STORAGE_ACTIVE_PARTNER_KEY);
   } catch {}
 
-  // Padrão sem parceiro
+  // Padrão limpo sem parceiro
   return {
     id: '',
     name: '',
