@@ -82,8 +82,13 @@ export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, defaultPl
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-      // External action: open WhatsApp in a new window/tab
-      window.open(waUrl, '_blank');
+      const isMobile = typeof navigator !== 'undefined' && 
+        (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768);
+      if (isMobile) {
+        window.location.href = waUrl;
+      } else {
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      }
     }, 400);
   };
 

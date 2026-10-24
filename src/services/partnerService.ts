@@ -124,10 +124,28 @@ export function deletePartner(id: string): void {
   }
 }
 
-// Montar a URL completa do WhatsApp
+// Codifica texto para URL de WhatsApp de forma segura em todos os navegadores móveis (RFC-3986)
+export function safeEncodeWhatsAppText(text: string): string {
+  return encodeURIComponent(text).replace(/[!'()*]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase());
+}
+
+// Montar a URL completa do WhatsApp usando o Universal Link oficial api.whatsapp.com/send
+// Evita erro de redirecionamento ou página em branco no Safari iOS, Android e navegadores in-app (Instagram, Facebook)
 export function buildWhatsAppUrl(phone: string = DEFAULT_WHATSAPP_PHONE, message: string = DEFAULT_WHATSAPP_MESSAGE): string {
   const cleanPhone = phone.replace(/\D/g, '');
-  return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+  const encodedText = safeEncodeWhatsAppText(message);
+  return `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodedText}`;
+}
+
+// Redirecionador universal inteligente para WhatsApp
+export function openWhatsAppUniversal(url: string): void {
+  if (typeof window === 'undefined') return;
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+  if (isMobile) {
+    window.location.href = url;
+  } else {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
 }
 
 const SYSTEM_RESERVED_KEYS = new Set([

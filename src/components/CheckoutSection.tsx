@@ -2,14 +2,24 @@ import React from 'react';
 import { 
   MessageCircle, 
   ArrowRight, 
-  UserCheck, 
-  CheckCircle2
+  UserCheck
 } from 'lucide-react';
 import { usePartner } from '../context/PartnerContext';
 
 export const CheckoutSection: React.FC = () => {
   const { activePartner } = usePartner();
   const WHATSAPP_URL = activePartner.whatsappUrl;
+
+  const handleWhatsAppClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // No mobile, redireciona diretamente no mesmo contexto para acionar o aplicativo
+    // nativo do WhatsApp via Universal Link sem abrir aba em branco com erro
+    const isMobile = typeof navigator !== 'undefined' && 
+      (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768);
+    if (isMobile) {
+      e.preventDefault();
+      window.location.href = WHATSAPP_URL;
+    }
+  };
 
   return (
     <section 
@@ -51,24 +61,18 @@ export const CheckoutSection: React.FC = () => {
             </div>
 
             {/* Title & Consultant Notice */}
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tight uppercase mb-4 sm:mb-5">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tight uppercase mb-6 sm:mb-8">
               Clique no botão abaixo.
             </h3>
-
-            {activePartner.isPartner && (
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-950 font-semibold text-xs sm:text-sm mb-5 shadow-2xs">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Indicação Ativa: <strong className="font-extrabold text-emerald-800">{activePartner.name}</strong></span>
-              </div>
-            )}
 
             {/* High-Converting CTA Button */}
             <div className="w-full max-w-md">
               <a
                 href={WHATSAPP_URL}
+                onClick={handleWhatsAppClick}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative w-full py-4 sm:py-5 px-6 sm:px-8 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.98] text-white font-black text-base sm:text-lg uppercase tracking-wider rounded-2xl shadow-xl shadow-emerald-600/35 hover:shadow-emerald-500/50 transition-all flex items-center justify-center gap-3 cursor-pointer text-center border border-emerald-300/60 overflow-hidden"
+                className="group relative w-full py-4 sm:py-5 px-6 sm:px-8 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.98] text-white font-black text-base sm:text-lg uppercase tracking-wider rounded-2xl shadow-xl shadow-emerald-600/35 hover:shadow-emerald-500/50 transition-all flex items-center justify-center gap-3 cursor-pointer text-center border border-emerald-300/60 overflow-hidden touch-manipulation"
               >
                 <div className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 pointer-events-none" />
                 <MessageCircle className="w-6 h-6 shrink-0 fill-current" />
